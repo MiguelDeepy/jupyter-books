@@ -1,0 +1,106 @@
+#######################################################################################
+# Uma configuração padrão que será carregada para todos os livros Jupyter
+# Espera-se que os usuários sobrescrevam esses valores em seu próprio arquivo _config.yml
+# Este também é a "lista principal" de todas as chaves e valores permitidos.
+
+#######################################################################################
+# Configurações do livro
+title                       : Aplicação de teste
+author                      : Miguel Tenório
+copyright                   : "2023"
+logo                        : logo.png
+# Padrões a serem ignorados durante a construção do livro. Podem ser usados estilo glob (ex: "skip.ipynb")
+exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
+# Auto-excluir arquivos fora do _toc.yml
+only_build_toc_files        : false
+
+#######################################################################################
+# Configuração de execução
+execute:
+  execute_notebooks: auto  # Durante a construção do livro, os notebooks devem ser executados? Escolha uma opção válida: "auto", "force", "cache", "off"
+  cache            : ""    # Caminho para o cache do jupyter que será usado para armazenar artefatos de execução. Padrão: _build/.jupyter_cache/
+  exclude_patterns : []    # Lista de padrões para ignorar na execução (por exemplo, um notebook que demora muito)
+  timeout          : 30    # Tempo máximo (em segundos) que cada célula do notebook pode ser executada
+  run_in_temp      : false # Se True, um diretório temporário será criado e usado como o diretório de trabalho de comando (cwd),
+                           # caso contrário, o diretório pai do notebook será o cwd
+  allow_errors     : false # Se False, quando uma célula de código gera um erro, a execução é interrompida;
+                           # caso contrário, todas as células sempre são executadas
+  stderr_output    : show  # Uma de 'show', 'remove', 'remove-warn', 'warn', 'error', 'severe' (Saída do stderr)
+
+#######################################################################################
+# Processamento e exibição de definições
+# default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
+parse:
+  myst_enable_extensions:
+    # - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    # - html_admonition
+    - html_image
+    - linkify
+    # - replacements
+    # - smartquotes
+    - substitution
+    - tasklist
+  myst_url_schemes: [mailto, http, https] # URI schemes that will be recognised as external URLs in Markdown links
+  myst_dmath_double_inline: true  # Allow display math ($$) within an inline context
+
+#######################################################################################
+# Adicione botões do GitHub no seu livro
+# Configurações específicas de HTML
+# https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  favicon                   : ""  # A path to a favicon image
+  use_edit_page_button      : false  # Whether to add an "edit this page" button to pages. If `true`, repository information in repository: must be filled in
+  use_repository_button     : true  # Whether to add a link to your repository button
+  use_issues_button         : true  # Whether to add an "open an issue" button
+  use_multitoc_numbering    : true   # Continuous numbering across parts/chapters
+  extra_footer              : ""  # Will be displayed underneath the footer.
+  google_analytics_id       : ""  # A GA id that can be used to track book views.
+  home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
+  baseurl                   : ""  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
+  analytics:
+
+  comments:
+    hypothesis              : false
+    utterances              : false
+  announcement              : "" # A banner announcement at the top of the site.
+
+#######################################################################################
+# LaTeX-specific settings
+latex:
+  latex_engine              : pdflatex  # one of 'pdflatex', 'xelatex' (recommended for unicode), 'luatex', 'platex', 'uplatex'
+  use_jupyterbook_latex     : true # use sphinx-jupyterbook-latex for pdf builds as default
+  # Define the name of the latex output file for PDF builds
+  latex_documents:
+    targetname: book.tex
+
+#######################################################################################
+# Launch button settings
+launch_buttons:
+  notebook_interface        : classic  # The interface interactive links will activate ["classic", "jupyterlab"]
+  binderhub_url             : ""  # The URL of the BinderHub (e.g., https://mybinder.org)
+  jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
+  thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
+  colab_url                 : "" # The URL of Google Colab (https://colab.research.google.com)
+
+#######################################################################################
+# Information about where the book exists on the web
+repository:
+  url                       : https://github.com/executablebooks/jupyter-book  # The URL to your book's repository
+  path_to_book              : ""  # A path to your book's folder, relative to the repository root.
+  branch                    : main  # Which branch of the repository should be used when creating links (optional)
+
+#######################################################################################
+# Advanced and power-user settings
+sphinx:
+  extra_extensions          :   # A list of extra extensions to load by Sphinx (added to those already used by JB).
+  local_extensions          :   # A list of local extensions to load by sphinx specified by "name: path" items
+  recursive_update          : false # A boolean indicating whether to overwrite the Sphinx config (true) or recursively update (false)
+  config                    :   # key-value pairs to directly over-ride the Sphinx configuration
+
+#######################################################################################
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
